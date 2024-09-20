@@ -1,1 +1,61 @@
 # Incident-Response-Playbook-for-High-CPU-Usage-on-Windows-Server-
+1. Investigate High CPU Usage
+Objective: Identify the rogue process that is consuming high CPU resources.
+Method Used: GUI Task Manager
+Steps:
+Open Task Manager by typing "Task Manager" in the search bar.
+Sort processes by CPU consumption to find the process using the most resources.
+Identify the rogue process named HeavyLoad.
+Screenshot: Task Manager showing HeavyLoad using high CPU
+2. Terminate the Offending Process
+Objective: Terminate the rogue process to mitigate its impact on the system.
+Method Used: GUI Task Manager
+Steps:
+Right-click the HeavyLoad process in Task Manager.
+Select "End Task" to terminate the process.
+Screenshot: Task Manager confirming HeavyLoad termination
+3. Hash the Suspicious File
+Objective: Generate a hash value for the file associated with the rogue process.
+Method Used: PowerShell Get-FileHash cmdlet.
+Steps:
+Open PowerShell as an administrator.
+Run the command Get-FileHash "C:\path\to\HeavyLoad.exe" -Algorithm SHA256.
+Note the generated hash value.
+Screenshot: PowerShell showing the file hash
+4. Perform Online Malware Analysis
+Objective: Analyze the file hash to check if the process is flagged as malware.
+Steps:
+Copy the hash value from PowerShell.
+Submit the hash to an online malware analysis tool like VirusTotal.
+Analyze the results to confirm whether the process is malicious.
+Screenshot: VirusTotal report
+5. Determine the File Owner
+Objective: Identify who created or owns the file on the system.
+Method Used: PowerShell
+Steps:
+In PowerShell, run the command Get-ACL "C:\path\to\HeavyLoad.exe" | Format-List Owner.
+Review the file owner information.
+Screenshot: PowerShell displaying file ownership details
+6. Archive and Quarantine the File
+Objective: Archive the suspicious file and move it to quarantine for further analysis.
+Steps:
+Compress the file into a zip container along with the hash.
+Move the zip archive to a quarantine system for safe storage.
+Screenshot: File successfully quarantined
+7. Remove the Suspicious File
+Objective: Remove the suspicious file from the affected system.
+Steps:
+Use PowerShell or File Explorer to delete HeavyLoad.exe from the system.
+Verify that the file no longer exists.
+Screenshot: Confirmation of file removal
+8. Complete and Submit the Incident Report
+Objective: Document the incident, actions taken, and results for review.
+Steps:
+Fill out the provided incident report template with details from the steps performed.
+Submit the report to the SOC (Security Operations Center) for final review.
+Screenshot: Incident report submission confirmation
+Document: Incident Report.docx
+Key Takeaways
+Demonstrated proficiency in using playbooks for incident response.
+Experience in investigating, containing, and resolving security incidents without automation.
+Hands-on familiarity with tools such as Windows Task Manager, PowerShell, and VirusTotal.
